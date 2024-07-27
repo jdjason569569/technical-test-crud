@@ -6,6 +6,8 @@ import {
   deletePhotoSuccess,
   loadedPhotos,
   loadPhotos,
+  newPhoto,
+  newPhotoSuccess,
 } from './photos.actions';
 import { catchError, EMPTY, map, switchMap } from 'rxjs';
 
@@ -36,4 +38,21 @@ export class PhotosEffects {
       )
     )
   );
+
+
+  saveNewPhoto$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(newPhoto),
+      switchMap((action) => {
+        return this.photoService.createPhoto(action.photo).pipe(
+          map(() => newPhotoSuccess({ photo: action.photo })),
+          catchError(() => EMPTY)
+        );
+      })
+    );
+  });
+
+
+
+
 }

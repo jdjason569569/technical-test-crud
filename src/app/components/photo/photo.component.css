@@ -1,0 +1,19 @@
+.container-form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.text {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.text-content {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+

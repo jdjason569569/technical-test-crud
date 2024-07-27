@@ -1,25 +1,55 @@
-
 <div class="container">
-  <h2>Lista de Ítems</h2>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Id</th>
-        <th>Titulo</th>
-        <th>Url</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let photo of ((photos$ | async) || []) | paginate: { itemsPerPage: 7, currentPage: page }">
-        <td>{{ photo.id }}</td>
-        <td>{{ photo.title }}</td>
-        <td>{{ photo.url }}</td>
-        <td>
-          <button class="btn btn-warning" >Editar</button>
-          <button class="btn btn-danger" (click)="deletePhoto(photo.id)" >Eliminar</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <pagination-controls (pageChange)="page = $event"></pagination-controls>
+  <div *ngIf="!isMenu">
+    <h2>Lista de Fotos</h2>
+    <button class="btn btn-success" (click)="newPhoto()">Nueva foto</button>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Titulo</th>
+          <th>Url</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="
+            let photo of (photos$ | async) || []
+              | paginate : { itemsPerPage: 7, currentPage: page }
+          "
+        >
+          <td>{{ photo.id }}</td>
+          <td>{{ photo.title }}</td>
+          <td>{{ photo.url }}</td>
+          <td>
+            <button class="btn btn-warning">Editar</button>
+            <button class="btn btn-danger" (click)="deletePhoto(photo.id)">
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <pagination-controls (pageChange)="page = $event"></pagination-controls>
+  </div>
+  <div *ngIf="isMenu">
+    <h2>Nueva Foto</h2>
+    <div class="container-form">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div>
+          <label class="text"  for="id">Id:</label>
+          <input class="text-content" id="id" formControlName="id" />
+        </div>
+        <div>
+          <label class="text" for="title">Titulo:</label>
+          <input class="text-content" id="title" formControlName="title" />
+        </div>
+
+        <div>
+          <label class="text" for="url">Url:</label>
+          <input class="text-content" id="url" formControlName="url" />
+        </div>
+        <button  class="btn btn-success"  type="submit">Enviar</button>
+      </form>
+    </div>
+  </div>
 </div>

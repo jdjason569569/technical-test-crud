@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import { catchError, EMPTY, map, mergeMap, switchMap } from 'rxjs';
-import { deletePost, deletePostSuccess, loadPost } from './post.actions';
+import { deletePost, deletePostSuccess, loadPost, newPost, newPostSuccess } from './post.actions';
 import { PostService } from 'src/app/services/post.service';
 
 @Injectable()
@@ -32,4 +32,16 @@ export class PostEffects {
       )
     )
   );
+
+  saveNewPost$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(newPost),
+      switchMap((action) => {
+        return this.postService.createPost(action.post).pipe(
+          map(() => newPostSuccess({ post: action.post })),
+          catchError(() => EMPTY)
+        );
+      })
+    );
+  });
 }

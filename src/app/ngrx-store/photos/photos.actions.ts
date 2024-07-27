@@ -17,3 +17,13 @@ export const deletePhotoSuccess = createAction(
   '[Photo Delete] deleted photo api success',
   props<{ id: number }>()
 );
+
+export const newPhoto = createAction(
+  '[Photo New] New photo',
+  props<{ photo: Photo }>()
+);
+
+export const newPhotoSuccess = createAction(
+  '[Photo New success] New photo success',
+  props<{ photo: Photo }>()
+);

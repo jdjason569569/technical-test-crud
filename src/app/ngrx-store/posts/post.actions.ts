@@ -20,3 +20,13 @@ export const deletePostSuccess = createAction(
   '[Post Delete] deleted post api success',
   props<{ id: number }>()
 );
+
+export const newPost = createAction(
+  '[Photo New] New Post',
+  props<{ post: Post }>()
+);
+
+export const newPostSuccess = createAction(
+  '[Post New success] New post success',
+  props<{ post: Post }>()
+);

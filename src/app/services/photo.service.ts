@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Photo } from '../models/photo.model.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -13,5 +14,9 @@ export class PhotosService {
 
   public deletePhoto(id: number){
     return this.http.delete(`https://jsonplaceholder.typicode.com/photos/${id}`);
+  }
+
+  public createPhoto(photo: Photo) {
+    return this.http.post<Photo>('https://jsonplaceholder.typicode.com/photos', photo);
   }
 }
