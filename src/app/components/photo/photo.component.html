@@ -1,1 +1,24 @@
-<p>photo works!</p>
+
+<div class="container">
+  <h2>Lista de Ítems</h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Titulo</th>
+        <th>Url</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let photo of (photos$  | async)">
+        <td>{{ photo.id }}</td>
+        <td>{{ photo.title }}</td>
+        <td>{{ photo.url }}</td>
+        <td>
+          <button class="btn btn-warning" >Editar</button>
+          <button class="btn btn-danger" >Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

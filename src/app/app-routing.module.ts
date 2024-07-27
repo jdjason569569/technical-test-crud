@@ -5,10 +5,10 @@ import { PostComponent } from './components/post/post.component';
 import { PhotoComponent } from './components/photo/photo.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'posts', component: PostComponent },
-  { path: 'photos', component: PhotoComponent }
+  { path: 'photos', component: PhotoComponent },
+  { path: '*', redirectTo: '/home', pathMatch: 'full' },
 ];
 
 @NgModule({
