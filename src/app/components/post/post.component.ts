@@ -12,6 +12,7 @@ import { selectListPost } from 'src/app/ngrx-store/posts/post.selectors';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
+  page: number = 1;
   posts$: Observable<Post[]> = new Observable();
 
   constructor(private store: Store<GlobalState>) {

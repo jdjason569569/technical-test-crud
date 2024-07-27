@@ -10,7 +10,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let photo of (photos$  | async)">
+      <tr *ngFor="let photo of ((photos$ | async) || []) | paginate: { itemsPerPage: 7, currentPage: page }">
         <td>{{ photo.id }}</td>
         <td>{{ photo.title }}</td>
         <td>{{ photo.url }}</td>
@@ -21,4 +21,5 @@
       </tr>
     </tbody>
   </table>
+  <pagination-controls (pageChange)="page = $event"></pagination-controls>
 </div>

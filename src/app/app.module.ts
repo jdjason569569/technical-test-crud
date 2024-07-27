@@ -14,6 +14,7 @@ import { ROOT_REDUCERS } from './ngrx-store/app.state';
 import { PostEffects } from './ngrx-store/posts/post.effects';
 import { PhotosEffects } from './ngrx-store/photos/photos.effects';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { HttpClientModule } from '@angular/common/http';
     StoreModule.forRoot(ROOT_REDUCERS),
     EffectsModule.forRoot([PostEffects, PhotosEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
-    StoreRouterConnectingModule.forRoot()
+    StoreRouterConnectingModule.forRoot(),
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
