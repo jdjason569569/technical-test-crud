@@ -11,6 +11,9 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { ROOT_REDUCERS } from './ngrx-store/app.state';
+import { PostEffects } from './ngrx-store/posts/post.effects';
+import { PhotosEffects } from './ngrx-store/photos/photos.effects';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,9 +24,10 @@ import { ROOT_REDUCERS } from './ngrx-store/app.state';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     StoreModule.forRoot(ROOT_REDUCERS),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([PostEffects, PhotosEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     StoreRouterConnectingModule.forRoot()
   ],
