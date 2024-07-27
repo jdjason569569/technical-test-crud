@@ -10,4 +10,8 @@ export class PostService {
   public getPost() {
     return this.http.get('https://jsonplaceholder.typicode.com/posts');
   }
+
+  public deletePost(id: number){
+    return this.http.delete(`https://jsonplaceholder.typicode.com/posts/${id}`);
+  }
 }

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
-import { catchError, EMPTY, map, mergeMap } from 'rxjs';
-import { loadPost } from './post.actions';
+import { catchError, EMPTY, map, mergeMap, switchMap } from 'rxjs';
+import { deletePost, deletePostSuccess, loadPost } from './post.actions';
 import { PostService } from 'src/app/services/post.service';
 
 @Injectable()
@@ -15,6 +15,18 @@ export class PostEffects {
       mergeMap(() =>
         this.postService.getPost().pipe(
           map((post) => ({ type: '[Post List] loaded success', post })),
+          catchError(() => EMPTY)
+        )
+      )
+    )
+  );
+
+  deletePost$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(deletePost),
+      switchMap((action) =>
+        this.postService.deletePost(action.id).pipe(
+          map(() => deletePostSuccess({ id: action.id })),
           catchError(() => EMPTY)
         )
       )

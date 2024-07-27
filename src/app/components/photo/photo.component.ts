@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, startWith } from 'rxjs';
+import { Observable } from 'rxjs';
 import { GlobalState } from 'src/app/models/global.model.interface';
 import { Photo } from 'src/app/models/photo.model.interface';
 import { selectListPhotos } from 'src/app/ngrx-store/photos/photo.selectors';
-import { loadPhotos } from 'src/app/ngrx-store/photos/photos.actions';
+import { deletePhoto, loadPhotos } from 'src/app/ngrx-store/photos/photos.actions';
 
 @Component({
   selector: 'app-photo',
@@ -17,6 +17,10 @@ export class PhotoComponent implements OnInit {
 
   constructor(private store: Store<GlobalState>) {
     this.photos$ = this.store.select(selectListPhotos);
+  }
+
+  public deletePhoto(id: number){
+    this.store.dispatch(deletePhoto({id}));
   }
 
   ngOnInit(): void {

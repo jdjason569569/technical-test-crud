@@ -10,3 +10,13 @@ export const loadedPost = createAction(
   '[Post List] loaded success',
   props<{post: Post[]}>()
 )
+
+export const deletePost = createAction(
+  '[Post Delete] delete success',
+  props<{ id: number }>()
+);
+
+export const deletePostSuccess = createAction(
+  '[Post Delete] deleted post api success',
+  props<{ id: number }>()
+);

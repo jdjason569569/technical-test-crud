@@ -10,4 +10,8 @@ export class PhotosService {
   public getPhotos(){
     return this.http.get('https://jsonplaceholder.typicode.com/photos');
   }
+
+  public deletePhoto(id: number){
+    return this.http.delete(`https://jsonplaceholder.typicode.com/photos/${id}`);
+  }
 }

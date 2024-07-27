@@ -16,7 +16,7 @@
         <td>{{ post.body }}</td>
         <td>
           <button class="btn btn-warning" >Editar</button>
-          <button class="btn btn-danger" >Eliminar</button>
+          <button class="btn btn-danger" (click)="deletePost(post.id)" >Eliminar</button>
         </td>
       </tr>
     </tbody>
