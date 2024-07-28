@@ -26,7 +26,17 @@ export const newPost = createAction(
   props<{ post: Post }>()
 );
 
+export const editPost = createAction(
+  '[Post edit] Edit Post',
+  props<{ post: Post }>()
+);
+
 export const newPostSuccess = createAction(
   '[Post New success] New post success',
+  props<{ post: Post }>()
+);
+
+export const editPostSuccess = createAction(
+  '[Post Edit success] Edit post success',
   props<{ post: Post }>()
 );

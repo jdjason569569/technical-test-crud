@@ -7,6 +7,7 @@ import { Photo } from 'src/app/models/photo.model.interface';
 import { selectListPhotos } from 'src/app/ngrx-store/photos/photo.selectors';
 import {
   deletePhoto,
+  editPhoto,
   loadPhotos,
   newPhoto,
 } from 'src/app/ngrx-store/photos/photos.actions';
@@ -21,6 +22,7 @@ export class PhotoComponent implements OnInit {
   photos$: Observable<Photo[]> = new Observable();
   isMenu = false;
   form: FormGroup;
+  isEdit = false;
 
   constructor(
     private store: Store<GlobalState>,
@@ -32,6 +34,7 @@ export class PhotoComponent implements OnInit {
       url: ['', [Validators.required]],
       id: ['', Validators.required],
     });
+    this.form.get('id')?.enable();
   }
 
   public deletePhoto(id: number) {
@@ -49,7 +52,11 @@ export class PhotoComponent implements OnInit {
         title: this.form.get('title')?.value,
         url: this.form.get('url')?.value,
       };
-      this.store.dispatch(newPhoto({ photo }));
+      if (this.isEdit) {
+        this.store.dispatch(editPhoto({ photo }));
+      } else {
+        this.store.dispatch(newPhoto({ photo }));
+      }
       this.cleanVars();
     }
   }
@@ -57,7 +64,21 @@ export class PhotoComponent implements OnInit {
   private cleanVars() {
     this.isMenu = false;
     this.form.reset();
+    this.form.get('id')?.enable();
+    this.isEdit = false;
   }
+
+  public editPhoto(photo: Photo) {
+    this.form.setValue({
+      id: photo.id,
+      title: photo.title,
+      url: photo.url,
+    });
+    this.form.get('id')?.disable();
+    this.isMenu = true;
+    this.isEdit = true;
+  }
+
 
   ngOnInit(): void {
     this.store.dispatch(loadPhotos());

@@ -1,8 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
-import { catchError, EMPTY, map, mergeMap, switchMap } from 'rxjs';
-import { deletePost, deletePostSuccess, loadPost, newPost, newPostSuccess } from './post.actions';
+import { catchError, EMPTY, map, mergeMap, of, switchMap } from 'rxjs';
+import {
+  deletePost,
+  deletePostSuccess,
+  editPost,
+  editPostSuccess,
+  loadPost,
+  newPost,
+  newPostSuccess,
+} from './post.actions';
 import { PostService } from 'src/app/services/post.service';
 
 @Injectable()
@@ -44,4 +52,13 @@ export class PostEffects {
       })
     );
   });
+
+  updatePost$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(editPost),
+      switchMap((action) => {
+        return of(editPostSuccess({ post: action.post }));
+      })
+    )
+  );
 }

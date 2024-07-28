@@ -23,7 +23,17 @@ export const newPhoto = createAction(
   props<{ photo: Photo }>()
 );
 
+export const editPhoto = createAction(
+  '[Photo edit] Edit Photo',
+  props<{ photo: Photo }>()
+);
+
 export const newPhotoSuccess = createAction(
   '[Photo New success] New photo success',
+  props<{ photo: Photo }>()
+);
+
+export const editPhotoSuccess = createAction(
+  '[Photo Edit success] Edit photo success',
   props<{ photo: Photo }>()
 );

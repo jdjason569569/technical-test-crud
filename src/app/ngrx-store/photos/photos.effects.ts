@@ -4,12 +4,14 @@ import { PhotosService } from 'src/app/services/photo.service';
 import {
   deletePhoto,
   deletePhotoSuccess,
+  editPhoto,
+  editPhotoSuccess,
   loadedPhotos,
   loadPhotos,
   newPhoto,
   newPhotoSuccess,
 } from './photos.actions';
-import { catchError, EMPTY, map, switchMap } from 'rxjs';
+import { catchError, EMPTY, map, of, switchMap } from 'rxjs';
 
 @Injectable()
 export class PhotosEffects {
@@ -52,6 +54,15 @@ export class PhotosEffects {
     );
   });
 
+
+  updatePhotos$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(editPhoto),
+      switchMap((action) => {
+        return of(editPhotoSuccess({ photo: action.photo }));
+      })
+    )
+  );
 
 
 

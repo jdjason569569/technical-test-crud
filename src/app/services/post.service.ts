@@ -12,11 +12,14 @@ export class PostService {
     return this.http.get('https://jsonplaceholder.typicode.com/posts');
   }
 
-  public deletePost(id: number){
+  public deletePost(id: number) {
     return this.http.delete(`https://jsonplaceholder.typicode.com/posts/${id}`);
   }
 
   public createPost(post: Post) {
-    return this.http.post<Post>('https://jsonplaceholder.typicode.com/posts', post);
+    return this.http.post<Post>(
+      'https://jsonplaceholder.typicode.com/posts',
+      post
+    );
   }
 }

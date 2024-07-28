@@ -2,6 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import { PostState } from '../post.state';
 import {
   deletePostSuccess,
+  editPostSuccess,
   loadedPost,
   loadPost,
   newPostSuccess,
@@ -24,5 +25,10 @@ export const postReducer = createReducer(
   on(newPostSuccess, (state, { post }) => ({
     ...state,
     post: [post, ...state.post],
-  }))
+  })),
+  on(editPostSuccess, (state, { post }) => {
+    let newState = state.post.filter((_) => _.id !== post.id);
+    newState.unshift(post);
+    return {...state, post: newState};
+  }),
 );

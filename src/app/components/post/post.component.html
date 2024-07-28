@@ -21,7 +21,7 @@
           <td>{{ post.title }}</td>
           <td>{{ post.body }}</td>
           <td>
-            <button class="btn btn-warning">Editar</button>
+            <button class="btn btn-warning" (click)="editPost(post)">Editar</button>
             <button class="btn btn-danger" (click)="deletePost(post.id)">
               Eliminar
             </button>
@@ -32,7 +32,6 @@
     <pagination-controls (pageChange)="page = $event"></pagination-controls>
   </div>
   <div *ngIf="isMenu">
-    <h2>Nueva Foto</h2>
     <div class="container-form">
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div>
