@@ -12,6 +12,10 @@ import {
 } from 'src/app/ngrx-store/posts/post.actions';
 import { selectListPost } from 'src/app/ngrx-store/posts/post.selectors';
 
+/**
+ * This component allows the management of posts
+ */
+
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',

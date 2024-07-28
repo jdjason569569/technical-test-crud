@@ -12,6 +12,10 @@ import {
   newPhoto,
 } from 'src/app/ngrx-store/photos/photos.actions';
 
+/**
+ * This component allows the management of photos
+ */
+
 @Component({
   selector: 'app-photo',
   templateUrl: './photo.component.html',

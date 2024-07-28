@@ -2,6 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Photo } from '../models/photo.model.interface';
 
+/**
+ * Allows you to bring information from an external API
+ */
+
 @Injectable({
   providedIn: 'root',
 })
